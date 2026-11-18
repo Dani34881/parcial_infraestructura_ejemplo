@@ -1,0 +1,115 @@
+/* ================================================================
+   RESPONSIVE.CSS — Diseño Responsivo con Media Queries CSS3
+   ESTRATEGIA: Desktop-first con ajustes por breakpoints
+   
+   BREAKPOINTS:
+   - < 1199px : portátiles pequeños y tablets grandes
+   - < 991px  : tablets
+   - < 767px  : móviles grandes
+   - < 575px  : móviles pequeños
+================================================================ */
+
+/* ---- TABLET GRANDE: max-width 1199px ---- */
+@media (max-width: 1199px) {
+  .hero-title { font-size: 3rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .team-grid   { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- TABLET: max-width 991px ---- */
+@media (max-width: 991px) {
+  :root { --espacio-xl: 4rem; --espacio-lg: 3rem; }
+
+  /* Menú hamburguesa visible */
+  .hamburger { display: flex; }
+
+  /* Menú deslizante desde la derecha */
+  .main-nav {
+    position:   fixed;      /* FIJO: panel lateral */
+    top:        0;
+    right:      -100%;      /* Oculto a la derecha */
+    width:      280px;
+    height:     100vh;
+    background: var(--color-oscuro);
+    padding:    5rem 2rem 2rem;
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow-y: auto;
+    box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+    z-index:    999;
+  }
+  .main-nav.nav-open { right: 0; }   /* Se abre */
+
+  .nav-list  { flex-direction: column; gap: 0.5rem; width: 100%; }
+  .nav-link  { display: block; width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border-radius: var(--radio-md); color: rgba(255,255,255,0.80); }
+  .nav-link::after { display: none; }
+  .nav-link:hover, .nav-link.active { background: rgba(108,99,255,0.20); color: var(--color-blanco); }
+
+  .hero-title         { font-size: 2.5rem; }
+  .about-grid         { grid-template-columns: 1fr; }
+  .about-badge        { bottom: 10px; right: 10px; }
+  .stats-bar          { grid-template-columns: repeat(2, 1fr); }
+  .services-grid      { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid     { grid-template-columns: repeat(2, 1fr); }
+  .blog-grid          { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid       { grid-template-columns: repeat(2, 1fr); }
+  .gallery-large      { grid-column: span 2; }
+  .testimonials-grid  { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
+  .featured-testimonial { transform: none; }
+  .pricing-grid       { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+  .featured-pricing   { transform: none; }
+  .contact-grid       { grid-template-columns: 1fr; }
+  .footer-grid        { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---- MÓVIL GRANDE: max-width 767px ---- */
+@media (max-width: 767px) {
+  :root { --espacio-xl: 3rem; --espacio-lg: 2rem; }
+
+  .section-header h2  { font-size: 1.8rem; }
+  .hero-title         { font-size: 2rem; }
+  .hero-subtitle      { font-size: 1rem; }
+  .hero-buttons       { flex-direction: column; align-items: center; }
+  .btn                { width: 100%; max-width: 300px; justify-content: center; }
+  .services-grid      { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+  .portfolio-grid     { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+  .team-grid          { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+  .blog-grid          { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+  .gallery-grid       { grid-template-columns: 1fr; }
+  .gallery-large      { grid-column: span 1; }
+  .form-row           { grid-template-columns: 1fr; }
+  .footer-grid        { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-bottom      { flex-direction: column; text-align: center; }
+  .newsletter-form    { flex-direction: column; }
+  .floating-aside     { bottom: 1rem; right: 1rem; }
+  .back-to-top        { width: 40px; height: 40px; font-size: 1.2rem; }
+}
+
+/* ---- MÓVIL PEQUEÑO: max-width 575px ---- */
+@media (max-width: 575px) {
+  :root { --espacio-xl: 2.5rem; --tamanio-base: 14px; }
+  .hero-title       { font-size: 1.6rem; }
+  .section-header h2 { font-size: 1.5rem; }
+  .logo             { font-size: 1.1rem; }
+  .stats-bar        { grid-template-columns: repeat(2, 1fr); padding: 1rem; gap: 0.5rem; }
+  .stat-item strong { font-size: 1.8rem; }
+  .filter-btn       { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
+  .testimonial-card { padding: 1.5rem; }
+}
+
+/* ---- IMPRESIÓN ---- */
+@media print {
+  .main-header, .floating-aside, .hero-buttons,
+  .portfolio-filters, .contact-form, .newsletter-form,
+  .social-links, .footer-legal { display: none; }
+  body { color: #000; background: #fff; }
+  .hero-section { background: #333 !important; min-height: auto; padding: 2rem; }
+  a { color: #000; text-decoration: underline; }
+  .service-card, .team-card, .blog-card { break-inside: avoid; }
+}
+
+/* ---- UTILIDADES ---- */
+.hide-mobile { display: block; }
+.show-mobile { display: none; }
+@media (max-width: 767px) { .hide-mobile { display: none; } .show-mobile { display: block; } }
+@media (max-width: 767px) { .text-center-mobile { text-align: center; } }
+@media (max-width: 767px) { .container { padding: 0 1rem; } }

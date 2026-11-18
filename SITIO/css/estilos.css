@@ -1,0 +1,371 @@
+/* ================================================================
+   ESTILOS.CSS
+   Colores del sitio:
+   fondo #e7f7f7 | agua #ddf4f4 | gris #a7b7bb
+   verde medio #488286 | verde oscuro #305252 | carbón #373E40
+================================================================ */
+
+/* ---------- 1. COLORES Y MEDIDAS ---------- */
+:root {
+  --fondo: #e7f7f7;
+  --agua: #ddf4f4;
+  --gris: #a7b7bb;
+  --verde: #488286;
+  --verde-oscuro: #305252;
+  --carbon: #373E40;
+  --texto: #2b3538;
+}
+
+/* ---------- 2. RESET ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ---------- 3. HEADER ---------- */
+.main-header {
+  position: sticky;
+  top: 12px;
+  z-index: 1000;
+  width: min(1100px, 100% - 24px);
+  margin: 12px auto 20px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--carbon);
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(48, 82, 82, 0.14);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.logo-icon {
+  color: var(--gris);
+  font-size: 13px;
+}
+
+/* Menú */
+.main-nav {
+  margin-left: auto;
+}
+
+.nav-list {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  color: var(--agua);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--verde);
+  color: white;
+}
+
+/* Botón hamburguesa */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  margin-left: auto;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 100%;
+  height: 2.5px;
+  background-color: white;
+  border-radius: 999px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger.active .bar:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+.hamburger.active .bar:nth-child(2) { opacity: 0; }
+.hamburger.active .bar:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+/* ---------- 4. TÍTULO DE PÁGINA ---------- */
+.titulo {
+  width: min(1100px, 100% - 32px);
+  margin: 0 auto 26px;
+  text-align: center;
+}
+
+.titulo h1 {
+  font-size: 30px;
+  color: var(--verde-oscuro);
+}
+
+.titulo p {
+  font-size: 14px;
+  color: #5d7173;
+  margin-top: 6px;
+}
+
+/* ---------- 5. TARJETAS DE COMPAÑEROS ---------- */
+.grid {
+  width: min(1100px, 100% - 32px);
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* La tarjeta completa es un enlace */
+.card {
+  display: block;
+  background-color: white;
+  border: 2px solid var(--gris);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(55, 62, 64, 0.08);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--verde);
+  box-shadow: 0 16px 32px rgba(48, 82, 82, 0.22);
+}
+
+/* Ventanita con la vista previa de la página.
+   El iframe se hace 4 veces más grande y se reduce con scale(0.25),
+   así se ve la página entera en miniatura. */
+.card-ventana {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--agua);
+  border-bottom: 2px solid #e3efef;
+}
+
+.card-ventana iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 400%;
+  border: 0;
+  background-color: white;
+  transform: scale(0.25);
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.card-nombre {
+  display: block;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--verde-oscuro);
+}
+
+/* ---------- 6. GALERÍA (mi proyecto) ---------- */
+#contenedorPrincipal {
+  width: min(760px, 100% - 32px);
+  margin: 0 auto 40px;
+  padding: 14px;
+  background-color: white;
+  border: 2px solid var(--gris);
+  border-radius: 22px;
+  box-shadow: 0 4px 14px rgba(55, 62, 64, 0.08);
+}
+
+.seccion {
+  padding: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 2px solid #cfeaea;
+  border-radius: 18px;
+}
+
+.seccion:last-of-type {
+  margin-bottom: 0;
+}
+
+.caja {
+  overflow: hidden;
+  border: 2px solid var(--verde);
+  border-radius: 12px;
+  background-color: white;
+  text-align: center;
+}
+
+.naranja {
+  background-color: var(--verde);
+}
+
+/* Sección 1 */
+.s1 {
+  float: left;
+  width: 23.5%;
+  height: 120px;
+  margin: 0.75%;
+  line-height: 120px;
+}
+
+/* Sección 2 */
+.s2 {
+  float: left;
+  width: 31.33%;
+  height: 150px;
+  margin: 1%;
+}
+
+.s2_i { line-height: 150px; }
+.s2_derecha { border: none; background: none; }
+.s2_D_superior { height: 70px; margin-bottom: 10px; line-height: 70px; }
+.s2_D_inferior { height: 70px; }
+
+/* Sección 3 */
+.s3_superior {
+  float: left;
+  width: 48%;
+  height: 100px;
+  margin: 1%;
+  line-height: 100px;
+}
+
+.s3_inferior {
+  clear: both;
+  width: 98%;
+  height: 80px;
+  margin: 1%;
+  line-height: 80px;
+}
+
+.caja img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caja.t {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.caja a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Triángulo de "play" sobre los videos */
+.caja a.video::after {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: white;
+  background: rgba(48, 82, 82, 0.72);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ---------- 7. FOOTER ---------- */
+footer {
+  width: min(1100px, 100% - 24px);
+  margin: 0 auto 22px;
+  padding: 18px;
+  text-align: center;
+  background-color: var(--verde-oscuro);
+  color: white;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ---------- 8. RESPONSIVE ---------- */
+@media (max-width: 991px) {
+  .hamburger { display: flex; }
+
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    padding: 80px 24px 24px;
+    background-color: var(--carbon);
+    border-radius: 18px 0 0 18px;
+    transition: right 0.4s;
+    z-index: 999;
+  }
+
+  .main-nav.nav-open { right: 0; }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-link {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .titulo h1 { font-size: 24px; }
+  #contenedorPrincipal { padding: 10px; }
+}
+
+@media (max-width: 575px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .card-nombre { font-size: 12px; padding: 10px; }
+  .s1 { width: 48%; }
+  .s2 { width: 48%; }
+  .s2_derecha { width: 98%; }
+  .s3_superior { width: 98%; }
+}

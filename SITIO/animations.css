@@ -1,0 +1,148 @@
+/* ================================================================
+   ANIMATIONS.CSS — Animaciones CSS3
+   @keyframes + clases de animación reutilizables
+================================================================ */
+
+/* Aparece desde arriba */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Aparece desde abajo */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Aparece desde la izquierda */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Aparece desde la derecha */
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Aparece escalando */
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Rebote infinito (flecha de scroll) */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50%       { transform: translateY(12px) rotate(45deg); }
+}
+
+/* Pulsación infinita (botón CTA) */
+@keyframes pulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 4px 20px rgba(108,99,255,0.40); }
+  50%       { transform: scale(1.04); box-shadow: 0 8px 35px rgba(108,99,255,0.70); }
+}
+
+/* Flotación infinita */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-15px); }
+}
+
+/* Brillo/resplandor */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(108,99,255,0.30); }
+  50%       { box-shadow: 0 0 30px rgba(108,99,255,0.80), 0 0 60px rgba(108,99,255,0.40); }
+}
+
+/* Rotación continua */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Progreso de barra */
+@keyframes progressBar {
+  from { width: 0%; }
+  to   { width: var(--progress-width, 80%); }
+}
+
+/* ----------------------------------------------------------------
+   CLASES DE ANIMACIÓN
+---------------------------------------------------------------- */
+.animate-fadeInDown {
+  animation: fadeInDown 0.8s ease-out both;
+}
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite alternate;
+}
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.7s ease-out both;
+}
+.animate-fadeInRight {
+  animation: fadeInRight 0.7s ease-out both;
+}
+.animate-zoomIn {
+  animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+/* Delays escalonados */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+
+/* ----------------------------------------------------------------
+   ANIMACIONES POR SCROLL (activadas con JS via IntersectionObserver)
+---------------------------------------------------------------- */
+.scroll-animate {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-animate.is-visible { opacity: 1; transform: translateY(0); }
+
+.scroll-left {
+  opacity: 0; transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-left.is-visible { opacity: 1; transform: translateX(0); }
+
+.scroll-right {
+  opacity: 0; transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-right.is-visible { opacity: 1; transform: translateX(0); }
+
+.scroll-zoom {
+  opacity: 0; transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.scroll-zoom.is-visible { opacity: 1; transform: scale(1); }
+
+/* ----------------------------------------------------------------
+   EFECTOS ESPECIALES DE HOVER
+---------------------------------------------------------------- */
+.hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.hover-scale:hover { transform: scale(1.03); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+
+.hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.hover-lift:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+
+.hover-rotate { transition: transform 0.4s ease; }
+.hover-rotate:hover { transform: rotate(5deg) scale(1.05); }
